@@ -1,0 +1,11 @@
+<h1 style="font-weight: 500">All pairs</h1>
+<div style="margin-bottom: 50px"></div>
+
+
+<%= for pair <- @pairs do %>
+    <h4 style="color: red">It should be reusable component</h4>
+
+
+    <span><%= pair.eng %></span> - <span><%= pair.ru %></span>
+    <hr/>
+<% end %>

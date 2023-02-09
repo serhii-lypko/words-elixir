@@ -20,6 +20,12 @@ defmodule WordsWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/", WordsWeb do
+    pipe_through :browser
+
+    get "/all", WordPairsController, :all
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", WordsWeb do
   #   pipe_through :api
