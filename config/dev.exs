@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :words, Words.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "turing41",
   hostname: "localhost",
   database: "words_dev",
   stacktrace: true,
