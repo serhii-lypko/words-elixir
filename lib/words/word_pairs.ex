@@ -2,8 +2,14 @@ defmodule Words.WordPairs do
 
   alias Words.WordPairs.WordPair
   alias Words.Repo
+  alias Words.Helpers
 
   import Ecto.Query
+
+  def extract_content(pairs) do
+    # Enum.map(pairs, fn wp -> Map.take(wp, [:eng, :ru]) end)
+    for pair <- pairs do Map.take(pair, [:eng, :ru]) end
+  end
 
   def read_all() do
     Repo.all(WordPair)
@@ -20,7 +26,16 @@ defmodule Words.WordPairs do
     read(true)
   end
 
+  def shuffle() do
+    read
+      |> extract_content
+      |> Helpers.shuffle_array
+  end
+
+  # --- --- --- --- --- --- --- --- --- ---
+
   def create(params) do
+    # WordPairs.create(%{ eng: "", ru: ""})
     %WordPair{}
     |> WordPair.changeset(params)
     |> Repo.insert()
