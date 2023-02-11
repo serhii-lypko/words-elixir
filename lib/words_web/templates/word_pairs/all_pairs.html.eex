@@ -2,9 +2,17 @@
 <span>Total learned: <%= @total_learned %></span>
 <div style="margin-bottom: 50px"></div>
 
-<%= for pair <- @pairs do %>
-    <h4 style="color: red">It should be reusable component</h4>
+<!-- Reusable component? -->
 
-    <span><%= pair.eng %></span> - <span><%= pair.ru %></span>
+<%= for pair <- @pairs do %>
+    <div x-data="{ open: false }">
+        <div x-on:click="open = ! open">
+            <span><%= pair.eng %></span>
+        </div>
+
+        <div x-show="open">
+            <span><%= pair.ru %></span>
+        </div>
+    </div>
     <hr/>
 <% end %>
