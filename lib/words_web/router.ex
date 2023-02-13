@@ -14,11 +14,14 @@ defmodule WordsWeb.Router do
     plug :accepts, ["json"]
   end
 
+
   scope "/", WordsWeb do
     pipe_through :browser
 
     # get "/", PageController, :index
-    get "/", WordPairsController, :all
+
+    resources "/", WordPairsController, only: [:index, :show]
+    # get "/words", WordPairsController, :show
   end
 
   # scope "/", WordsWeb do

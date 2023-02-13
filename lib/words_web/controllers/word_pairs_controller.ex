@@ -4,7 +4,7 @@ defmodule WordsWeb.WordPairsController do
   alias Words.WordPairs
   # alias Words.WordPairs.WordPair
 
-  def all(conn, _params) do
+  def index(conn, _params) do
     # word_pairs = WordPairs.read_all()
     word_pairs = WordPairs.shuffle()
 
@@ -14,10 +14,16 @@ defmodule WordsWeb.WordPairsController do
 
     render(
       conn,
-      "all_pairs.html",
+      "index.html",
       pairs: word_pairs,
       total_learned: total_learned
     )
   end
 
+  def show(conn, _params) do
+    render(
+      conn,
+      "show.html"
+    )
+  end
 end
