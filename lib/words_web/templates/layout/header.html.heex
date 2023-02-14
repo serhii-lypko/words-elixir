@@ -1,6 +1,13 @@
 <header style="display: flex; width: 100%; border: 1px solid black">
+    <nav>
+        <ul>
+            <li><%= link to: "/" do %>All<% end %></li>
+            <li><%= link to: "/learned" do %>Learned<% end %></li>
+        </ul>
+    </nav>
+
     Total learned:
-    <span style="color: red">
-        <%= get_total_learned() %>
+    <span>
+        <%= total_learned() %>
     </span>
 </header>

@@ -8,7 +8,7 @@ defmodule Words.WordPairs do
 
   def extract_content(pairs) do
     # Enum.map(pairs, fn wp -> Map.take(wp, [:eng, :ru]) end)
-    for pair <- pairs do Map.take(pair, [:eng, :ru]) end
+    for pair <- pairs do Map.take(pair, [:id, :eng, :ru, :learned]) end
   end
 
   def read_all() do
@@ -26,6 +26,10 @@ defmodule Words.WordPairs do
     read(true)
   end
 
+  def count_learned() do
+    length(read_learned())
+  end
+
   def shuffle() do
     read
       |> extract_content
@@ -39,6 +43,15 @@ defmodule Words.WordPairs do
     %WordPair{}
     |> WordPair.changeset(params)
     |> Repo.insert()
+  end
+
+  def toggle_is_learned(id) do
+    pair = Repo.get(WordPair, id)
+
+    next_state = if pair.learned, do: false, else: true
+    pair = Ecto.Changeset.change pair, learned: next_state
+
+    Repo.update(pair)
   end
 
   def delete(id) do

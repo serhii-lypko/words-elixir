@@ -1,7 +1,4 @@
-<h1 style="font-weight: 500">All pairs</h1>
-<div style="margin-bottom: 50px"></div>
-
-<!-- Reusable component? -->
+<span>Learned</span>
 
 <%= for pair <- @pairs do %>
     <div x-data="{ open: false }">
@@ -11,11 +8,7 @@
 
         <div x-show="open">
             <span><%= pair.ru %></span>
-            <%=link(
-                get_inverted_status_text(pair.learned),
-                to: "/#{pair.id}",
-                method: :patch)
-            %>
+            <%=link("Unread", to: "/#{pair.id}", method: :patch) %>
         </div>
     </div>
     <hr/>

@@ -18,10 +18,9 @@ defmodule WordsWeb.Router do
   scope "/", WordsWeb do
     pipe_through :browser
 
-    # get "/", PageController, :index
+    get "/learned", WordPairsController, :learned
 
-    resources "/", WordPairsController, only: [:index, :show]
-    # get "/words", WordPairsController, :show
+    resources "/", WordPairsController, only: [:index, :show, :update]
   end
 
   # scope "/", WordsWeb do
